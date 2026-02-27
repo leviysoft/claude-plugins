@@ -10,7 +10,8 @@
     "initializationOptions": {},
     "settings": {
       "metals": {
-        "autoImportBuilds": "all"
+        "autoImportBuilds": "all",
+        "targetBuildTool": "sbt"
       }
     },
     "maxRestarts": 3
