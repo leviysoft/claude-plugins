@@ -1,7 +1,7 @@
 {
   "name": "idris2-lsp",
   "description": "Idris2 LSP integration for Claude",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Daniel Slapman"
   }

@@ -3,8 +3,8 @@
     "command": "idris2-lsp",
     "args": [],
     "extensionToLanguage": {
-      ".idr": "idris2",
-      ".lidr": "idris2"
+      ".idr": "idris",
+      ".lidr": "idris"
     },
     "transport": "stdio",
     "initializationOptions": {},
