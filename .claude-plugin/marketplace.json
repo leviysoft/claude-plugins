@@ -34,6 +34,11 @@
       "name": "prefer-ast-grep",
       "source": "./prefer-ast-grep",
       "description": "Redirects structural code searches from Grep to ast-grep. Requires ast-grep@ast-grep-marketplace."
+    },
+    {
+      "name": "enforce-native-search",
+      "source": "./enforce-native-search",
+      "description": "Blocks grep/rg and find in Bash commands, enforcing ast-grep and the Glob tool instead"
     }
   ]
 }

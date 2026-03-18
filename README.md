@@ -2,6 +2,18 @@
 
 ## Utility Plugins
 
+### prefer-ast-grep
+
+Redirects structural code searches (functions, classes, types) from the `Grep` tool to ast-grep. Requires `ast-grep@ast-grep-marketplace`.
+
+    /plugin install prefer-ast-grep@leviysoft
+
+### enforce-native-search
+
+Blocks `grep`/`rg` and `find` in Bash commands, enforcing ast-grep and the Glob tool instead. Requires `jq` to be installed.
+
+    /plugin install enforce-native-search@leviysoft
+
 ### prefer-jq
 
 Blocks use of Python for JSON processing in Bash commands, enforcing `jq` instead.

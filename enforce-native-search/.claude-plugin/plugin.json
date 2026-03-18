@@ -1,0 +1,8 @@
+{
+  "name": "enforce-native-search",
+  "description": "Blocks grep/rg and find in Bash commands, enforcing ast-grep and the Glob tool instead",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Slapman"
+  }
+}
