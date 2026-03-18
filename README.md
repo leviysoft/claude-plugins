@@ -1,5 +1,15 @@
 # CLAUDE Plugins
 
+## Utility Plugins
+
+### prefer-jq
+
+Blocks use of Python for JSON processing in Bash commands, enforcing `jq` instead.
+
+    /plugin install prefer-jq@leviysoft
+
+Requires `jq` to be installed.
+
 ## LSP Plugins
 
     /plugin marketplace add leviysoft/claude-plugins

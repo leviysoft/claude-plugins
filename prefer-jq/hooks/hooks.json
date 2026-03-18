@@ -1,0 +1,17 @@
+{
+  "description": "Blocks Python JSON processing in Bash commands, enforcing jq instead",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/check-json-tool.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

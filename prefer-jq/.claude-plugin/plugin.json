@@ -1,0 +1,8 @@
+{
+  "name": "prefer-jq",
+  "description": "Blocks use of Python for JSON processing in Bash commands, enforcing jq instead",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Slapman"
+  }
+}
