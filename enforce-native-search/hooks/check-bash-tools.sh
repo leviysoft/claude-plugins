@@ -9,8 +9,15 @@ fi
 input=$(cat)
 cmd=$(printf "%s" "$input" | jq -r ".tool_input.command // empty")
 
-# Block: grep/egrep/fgrep/rg used as code search tools
-if printf "%s" "$cmd" | grep -qE "(^|&&|\|\||;|\|)[[:space:]]*(grep|egrep|fgrep|rg)[[:space:]]"; then
+# Block: grep/egrep/fgrep/rg used as standalone file search (not as a stdin filter after a pipe)
+if printf "%s" "$cmd" | grep -qE "(^|&&|\|\||;)[[:space:]]*(grep|egrep|fgrep|rg)[[:space:]]"; then
+  printf '{"decision":"block","reason":"Use ast-grep instead of grep/rg for code search"}' >&2
+  exit 2
+fi
+
+# Block: grep/egrep/fgrep/rg after a pipe but with recursive/file-search flags (still a file search)
+if printf "%s" "$cmd" | grep -qE "\|[[:space:]]*(grep|egrep|fgrep|rg)[[:space:]]" \
+  && printf "%s" "$cmd" | grep -qE "\|[[:space:]]*(grep|egrep|fgrep|rg)[[:space:]].*(-r[^e]|-R|--recursive)"; then
   printf '{"decision":"block","reason":"Use ast-grep instead of grep/rg for code search"}' >&2
   exit 2
 fi
