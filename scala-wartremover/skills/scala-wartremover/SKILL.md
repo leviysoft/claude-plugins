@@ -26,21 +26,16 @@ Add the following configuration to common project settings:
     wartremoverErrors ++= Seq(
       Wart.ArrayEquals,
       Wart.CaseClassPrivateApply,
-      Wart.Discard.Future,
       Wart.EitherProjectionPartial,
       Wart.Enumeration,
       Wart.Equals,
-      Wart.ExplicitImplicitTypes,
       Wart.FinalCaseClass,
-      Wart.JavaConversions,
-      Wart.JavaSerializable,
       Wart.IterableOps,
       Wart.LeakingSealed,
       Wart.NonUnitStatements,
       Wart.Null,
       Wart.OptionPartial,
       Wart.Product,
-      Wart.PublicInference,
       Wart.Serializable,
       Wart.StringPlusAny,
       Wart.TripleQuestionMark,
@@ -48,8 +43,20 @@ Add the following configuration to common project settings:
       ContribWart.DiscardedFuture,
       ContribWart.MissingOverride,
       ContribWart.RefinedClasstag
-    )
+    ),
+    wartremoverErrors ++= {
+      if (scalaVersion.value.startsWith("2.")) Seq(
+        Wart.ExplicitImplicitTypes,
+        Wart.JavaConversions,
+        Wart.JavaSerializable,
+        Wart.PublicInference,
+      ) else Seq.empty
+    },
 ```
+
+> **Note on Scala-2-only warts:** `ExplicitImplicitTypes`, `JavaConversions`, `JavaSerializable`, and `PublicInference` are only implemented for Scala 2 (they live in wartremover's `scala-2/` source tree and have no Scala 3 counterpart). Referencing them unconditionally in a cross-compiled project will cause a wart-load failure when compiling with Scala 3. Use the `scalaVersion`-conditional block above.
+
+> **Note on `Wart.Discard.Future`:** The `Discard` sub-warts (`Discard.Future`, `Discard.Either`, `Discard.Try`) are nested objects inside the abstract `Discard` class and are **not exposed as named members of the `Wart` companion object**. Referencing `Wart.Discard.Future` causes a compilation error in build.sbt. Use `Wart.custom("org.wartremover.warts.Discard.Future")` if needed — but `ContribWart.DiscardedFuture` already covers discarded `Future` values.
 
 > **Note on `Wart.Equals`:** Include it for **fresh projects** (bootstrapped during the current session). For **existing codebases**, omit `Wart.Equals` by default — it typically triggers a large volume of changes requiring `cats.Eq` instances or other plumbing, which is better tackled as a separate, scoped effort. The team can opt in later once the other warts are clean.
 
