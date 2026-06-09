@@ -1,7 +1,7 @@
 ---
 name: Maven Source Fetch
 description: This skill should be used when the user or an agent needs to "fetch sources for a Maven dependency", "download source JARs", "get sources for a library", "find source JAR path", "attach sources for a dependency", "download sources via Coursier", or "locate source JARs for debugging".
-version: 0.1.0
+version: 1.0.0
 ---
 
 # Maven Source JAR Fetching via Coursier

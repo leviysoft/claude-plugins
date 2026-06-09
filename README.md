@@ -37,6 +37,14 @@ Find the latest version of a Maven artifact, list available versions, or check a
 
 Requires [Coursier](https://get-coursier.io/docs/cli-installation) (`cs`) to be installed.
 
+### maven-source-fetch
+
+Fetch source JARs for Maven artifacts via Coursier and obtain their local cache paths.
+
+    /plugin install maven-source-fetch@leviysoft
+
+Requires [Coursier](https://get-coursier.io/docs/cli-installation) (`cs`) to be installed.
+
 ## LSP Plugins
 
 ### HOW TO SCALA
