@@ -15,9 +15,9 @@ if printf "%s" "$cmd" | grep -qE "python3?[[:space:]]+-m[[:space:]]+json"; then
   exit 2
 fi
 
-# Block: python -c '...json...'
-if printf "%s" "$cmd" | grep -qE "python3?[[:space:]]+-c" \
-  && printf "%s" "$cmd" | grep -qiE "json\.load|json\.dumps|json\.loads|import json"; then
+# Block: python with inline JSON code (-c, heredoc stdin, or any inline invocation)
+if printf "%s" "$cmd" | grep -qE "python3?" \
+  && printf "%s" "$cmd" | grep -qiE "import json|json\.(load|loads|dumps|dump)\b"; then
   printf '{"decision":"block","reason":"Use jq instead of python for JSON processing"}' >&2
   exit 2
 fi
